@@ -8,6 +8,7 @@ def main():
         cursor = conn.cursor()
         create_table(cursor)
         filling_table(cursor)
+        create_user(cursor)
         cursor.close()
         conn.close()
 

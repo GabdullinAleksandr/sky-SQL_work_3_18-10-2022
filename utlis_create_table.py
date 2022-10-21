@@ -8,7 +8,7 @@ def connect_bd():
     """
     try:
         connection = psycopg2.connect(user="postgres", password="99493876", host="127.0.0.1",
-                                      port="5432", database="sky-SQL_work_2")
+                                      port="5432", database="sky_sql_work_2")
         connection.autocommit = True
         print('Connection DONE')
         return connection
@@ -18,6 +18,11 @@ def connect_bd():
 
 
 def create_table(cursor):
+    """
+    При вызове, запукает создание всех таблиц в нужном порядке
+    :param cursor:
+    :return:
+    """
     create_table_colour(cursor)
     create_table_breed(cursor)
     create_table_an_type(cursor)
@@ -142,4 +147,3 @@ def create_table_shelter(cursor):
         print('create shelter DONE')
     except:
         print('create shelter FAILED')
-

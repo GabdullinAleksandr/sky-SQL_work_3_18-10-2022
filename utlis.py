@@ -2,6 +2,11 @@ import csv
 
 
 def filling_table(cursor):
+    """
+    Открывает csv файл и расскидывает данные в новые созданные таблицы
+    :param cursor:
+    :return:
+    """
     with open('animals.csv', newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         count = 1
@@ -62,4 +67,36 @@ def filling_table(cursor):
                 VALUES ('{id_shelter}', '{outcome_month}', '{outcome_year}', '{age_upon_outcome}')
             """
             cursor.execute(req_shelter)
+
+
+def create_user(cursor):
+    """
+    создает пользователей и дает им разные права
+    :param cursor:
+    :return:
+    """
+    req = """
+create user user_one;
+GRANT select on sky_sql_work_2.public.subtype to user_one
+    """
+    cursor.execute(req)
+
+    req = """
+create user user_two;
+GRANT select ON ALL TABLES IN SCHEMA public to user_two
+        """
+    cursor.execute(req)
+
+    req = """
+create user user_3;
+GRANT select, update ON ALL TABLES IN SCHEMA public to user_3
+        """
+    cursor.execute(req)
+
+    req = """
+create user user_4;
+GRANT select, update, insert ON ALL TABLES IN SCHEMA public to user_4
+        """
+    cursor.execute(req)
+
 
